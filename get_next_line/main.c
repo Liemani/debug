@@ -14,8 +14,8 @@ int main()
 	int		return_value1;
 	int		return_value2;
 
-	fd1 = open("empty_file.txt", O_RDONLY);
-	fd2 = open("marge_even.txt", O_RDONLY);
+	fd1 = open("data/marge_odd.txt", O_RDONLY);
+	fd2 = open("data/marge_even.txt", O_RDONLY);
 	PRINT(fd1, d);
 	PRINT(fd2, d);
 	while ((return_value1 = get_next_line(fd1, &line1)) == 1

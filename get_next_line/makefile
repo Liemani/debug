@@ -1,4 +1,5 @@
 PROJNAME = $(shell basename $(CURDIR))
+MAINFILE = main
 
 GITDIR = $(realpath $(CURDIR)/../..)
 
@@ -14,7 +15,7 @@ PROJDIR = $(SEOUL42DIR)/$(PROJNAME)
 TARGET = $(PROJNAME).out
 
 SRCS = $(wildcard $(PROJDIR)/*.c)
-OBJS = $(subst $(SEOUL42DIR), $(BUILDDIR), $(SRCS:.c=.o))
+OBJS = $(patsubst $(SEOUL42DIR)/%.c,$(BUILDDIR)/%.o,$(SRCS))	# OBJS = $(subst $(SEOUL42DIR),$(BUILDDIR),$(SRCS:.c=.o))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -32,13 +33,13 @@ MKDIR = mkdir -p
 .PHONY:				all
 all:				$(BUILDDIRS) $(TARGET)
 
-$(TARGET):			$(BUILDDIR)/main.o $(OBJS)
+$(TARGET):			$(BUILDDIR)/$(MAINFILE).o $(OBJS)
 					$(CC) $^ -o $@
 
 $(BUILDDIRS):
 					$(MKDIR) $@
 
-$(BUILDDIR)/main.o:	main.c
+$(BUILDDIR)/$(MAINFILE).o:	$(MAINFILE).c
 					$(COMPILE) -o $@ -c $<
 
 $(OBJS):			$(BUILDDIR)/%.o: $(SEOUL42DIR)/%.c
