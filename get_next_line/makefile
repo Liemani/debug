@@ -14,6 +14,7 @@ PROJDIR = $(SEOUL42DIR)/$(PROJNAME)
 
 TARGET = $(PROJNAME).out
 B_TARGET = $(PROJNAME)_bonus.out
+D_TARGET = $(PROJNAME)_debug.out
 
 # FILES = $(wildcard $(PROJDIR)/*.c)
 FILES = get_next_line get_next_line_utils
@@ -23,6 +24,7 @@ B_SRCS = $(patsubst %,$(PROJDIR)/%_bonus.c,$(FILES))
 
 OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%.o,$(FILES))	# OBJS = $(subst $(SEOUL42DIR),$(BUILDDIR),$(FILES:.c=.o))
 B_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%_bonus.o,$(FILES))
+D_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%_debug.o,$(FILES))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -37,36 +39,39 @@ MKDIR = mkdir -p
 
 
 
-.PHONY:					all
-all:					echo $(BUILDDIRS) $(TARGET)
-
-$(BUILDDIRS):
-						$(MKDIR) $@
+.PHONY:						all
+all:						echo $(BUILDDIRS) $(TARGET)
+bonus:						echo $(BUILDDIRS) $(B_TARGET)
+debug:						echo $(BUILDDIRS) $(D_TARGET)
 
 echo:
-						@echo "DEFINE =" $(DEFINE)
+							@echo "DEFINE =" $(DEFINE)
 
-bonus:					$(BUILDDIRS) $(B_TARGET)
+$(BUILDDIRS):
+							$(MKDIR) $@
 
-$(TARGET):				$(BUILDDIR)/$(MAINFILE).o $(OBJS)
-						$(CC) $^ -o $@
-
-$(B_TARGET):			$(BUILDDIR)/$(MAINFILE).o $(M_OBJS)
-						$(CC) $^ -o $@
+$(TARGET):					$(BUILDDIR)/$(MAINFILE).o $(OBJS)
+							$(CC) $^ -o $@
+$(B_TARGET):				$(BUILDDIR)/$(MAINFILE).o $(M_OBJS)
+							$(CC) $^ -o $@
+$(D_TARGET):				$(BUILDDIR)/$(MAINFILE).o $(D_OBJS)
+							$(CC) $^ -o $@
 
 $(BUILDDIR)/$(MAINFILE).o:	$(MAINFILE).c
-						$(COMPILE) -o $@ -c $<
+							$(COMPILE) -o $@ -c $<
 
-$(OBJS) $(B_OBJS):	$(BUILDDIR)/%.o: $(SEOUL42DIR)/%.c
-						$(COMPILE) -o $@ -c $<
+$(OBJS) $(B_OBJS):			$(BUILDDIR)/%.o: $(SEOUL42DIR)/%.c
+							$(COMPILE) -o $@ -c $<
+$(D_OBJS):					$(BUILDDIR)/%_debug.o: $(SEOUL42DIR)/%.c
+							$(COMPILE) -g -o $@ -c $<
 
-.PHONY:					clean
+.PHONY:						clean
 clean:
-						$(RMDIR) $(BUILDDIR)
+							$(RMDIR) $(BUILDDIR)
 
-.PHONY:					fclean
-fclean:					clean
-						$(RM) $(TARGET)
+.PHONY:						fclean
+fclean:						clean
+							$(RM) $(TARGET) $(B_TARGET) $(D_TARGET)
 
-.PHONY:					re
-re:						fclean all
+.PHONY:						re
+re:							fclean all

@@ -7,10 +7,12 @@
 
 int main()
 {
+	int		fd;
 	char	*line1;
 	int		return_value1;
 
-	while ((return_value1 = get_next_line(0, &line1)) == 1)
+	fd = open("data/korean.txt", O_RDONLY);
+	while ((return_value1 = get_next_line(fd, &line1)) == 1)
 	{
 		PRINT(line1, s);
 		free(line1);
