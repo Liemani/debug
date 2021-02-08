@@ -25,6 +25,7 @@ B_SRCS = $(patsubst %,$(PROJDIR)/%_bonus.c,$(FILES))
 OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%.o,$(FILES))	# OBJS = $(subst $(SEOUL42DIR),$(BUILDDIR),$(FILES:.c=.o))
 B_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%_bonus.o,$(FILES))
 D_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%_debug.o,$(FILES))
+A_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%_asan.o,$(FILES))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
