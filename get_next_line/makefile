@@ -1,4 +1,5 @@
 PROJNAME = $(shell basename $(CURDIR))
+MAINFILE=main
 
 GITDIR = $(realpath $(CURDIR)/../..)
 
@@ -12,20 +13,23 @@ PROJDIR = $(SEOUL42DIR)/$(PROJNAME)
 
 
 TARGET = $(PROJNAME).out
-B_TARGET = $(PROJNAME)_bonus.out
-D_TARGET = $(PROJNAME)_debug.out
-A_TARGET = $(PROJNAME)_asan.out
+B_SUFFIX = _bonus
+D_SUFFIX = _debug
+A_SUFFIX = _asan
+B_TARGET = $(PROJNAME)$(B_SUFFIX).out
+D_TARGET = $(PROJNAME)$(D_SUFFIX).out
+A_TARGET = $(PROJNAME)$(A_SUFFIX).out
 
 # FILES = $(wildcard $(PROJDIR)/*.c)
 FILES = get_next_line get_next_line_utils
 
 SRCS = $(patsubst %,$(PROJDIR)/%.c,$(FILES))
-B_SRCS = $(patsubst %,$(PROJDIR)/%_bonus.c,$(FILES))
+B_SRCS = $(patsubst %,$(PROJDIR)/%$(B_SUFFIX).c,$(FILES))
 
 OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%.o,$(FILES))	# OBJS = $(subst $(SEOUL42DIR),$(BUILDDIR),$(FILES:.c=.o))
-B_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%_bonus.o,$(FILES))
-D_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%_debug.o,$(FILES))
-A_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%_asan.o,$(FILES))
+B_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%$(B_SUFFIX).o,$(FILES))
+D_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%$(D_SUFFIX).o,$(FILES))
+A_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%$(A_SUFFIX).o,$(FILES))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -62,13 +66,13 @@ $(D_TARGET):				$(BUILDDIR)/$(MAINFILE).o $(D_OBJS)
 $(A_TARGET):				$(BUILDDIR)/$(MAINFILE).o $(A_OBJS)
 							$(CC) $^ -o $@
 
-$(BUILDDIR)/main.o:			main.c
+$(BUILDDIR)/$(MAINFILE).o:	$(MAINFILE).c
 							$(COMPILE) -o $@ -c $<
 $(OBJS) $(B_OBJS):			$(BUILDDIR)/%.o: $(SEOUL42DIR)/%.c
 							$(COMPILE) -o $@ -c $<
-$(D_OBJS):					$(BUILDDIR)/%_debug.o: $(SEOUL42DIR)/%.c
+$(D_OBJS):					$(BUILDDIR)/%$(D_SUFFIX).o: $(SEOUL42DIR)/%.c
 							$(COMPILE) -g -o $@ -c $<
-$(A_OBJS):					$(BUILDDIR)/%_asan.o: $(SEOUL42DIR)/%.c
+$(A_OBJS):					$(BUILDDIR)/%$(A_SUFFIX).o: $(SEOUL42DIR)/%.c
 							$(COMPILE) -g3 -fsanitize=address -o $@ -c $<
 
 .PHONY:						clean
