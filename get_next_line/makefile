@@ -61,19 +61,23 @@ $(TARGET):					$(BUILDDIR)/$(MAINFILE).o $(OBJS)
 							$(CC) $^ -o $@
 $(B_TARGET):				$(BUILDDIR)/$(MAINFILE).o $(M_OBJS)
 							$(CC) $^ -o $@
-$(D_TARGET):				$(BUILDDIR)/$(MAINFILE).o $(D_OBJS)
+$(D_TARGET):				$(BUILDDIR)/$(MAINFILE)$(D_SUFFIX).o $(D_OBJS)
 							$(CC) $^ -o $@
-$(A_TARGET):				$(BUILDDIR)/$(MAINFILE).o $(A_OBJS)
+$(A_TARGET):				$(BUILDDIR)/$(MAINFILE)$(A_SUFFIX).o $(A_OBJS)
 							$(CC) $^ -o $@
 
 $(BUILDDIR)/$(MAINFILE).o:	$(MAINFILE).c
 							$(COMPILE) -o $@ -c $<
+$(BUILDDIR)/$(MAINFILE)$(D_SUFFIX).o:	$(MAINFILE).c
+							$(COMPILE) -o $@ -c $< -g
+$(BUILDDIR)/$(MAINFILE)$(A_SUFFIX).o:	$(MAINFILE).c
+							$(COMPILE) -o $@ -c $< -g3 -fsanitize=address
 $(OBJS) $(B_OBJS):			$(BUILDDIR)/%.o: $(SEOUL42DIR)/%.c
 							$(COMPILE) -o $@ -c $<
 $(D_OBJS):					$(BUILDDIR)/%$(D_SUFFIX).o: $(SEOUL42DIR)/%.c
-							$(COMPILE) -g -o $@ -c $<
+							$(COMPILE) -o $@ -c $< -g
 $(A_OBJS):					$(BUILDDIR)/%$(A_SUFFIX).o: $(SEOUL42DIR)/%.c
-							$(COMPILE) -g3 -fsanitize=address -o $@ -c $<
+							$(COMPILE) -o $@ -c $< -g3 -fsanitize=address
 
 .PHONY:						clean
 clean:
