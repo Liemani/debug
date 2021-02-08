@@ -1,5 +1,4 @@
 PROJNAME = $(shell basename $(CURDIR))
-MAINFILE = main
 
 GITDIR = $(realpath $(CURDIR)/../..)
 
@@ -15,6 +14,7 @@ PROJDIR = $(SEOUL42DIR)/$(PROJNAME)
 TARGET = $(PROJNAME).out
 B_TARGET = $(PROJNAME)_bonus.out
 D_TARGET = $(PROJNAME)_debug.out
+A_TARGET = $(PROJNAME)_asan.out
 
 # FILES = $(wildcard $(PROJDIR)/*.c)
 FILES = get_next_line get_next_line_utils
@@ -39,11 +39,13 @@ MKDIR = mkdir -p
 
 
 
-.PHONY:						all
+.PHONY:						all bonus, debug, asan
 all:						echo $(BUILDDIRS) $(TARGET)
 bonus:						echo $(BUILDDIRS) $(B_TARGET)
 debug:						echo $(BUILDDIRS) $(D_TARGET)
+asan:						echo $(BUILDDIRS) $(A_TARGET)
 
+.PHONY: echo
 echo:
 							@echo "DEFINE =" $(DEFINE)
 
@@ -56,14 +58,17 @@ $(B_TARGET):				$(BUILDDIR)/$(MAINFILE).o $(M_OBJS)
 							$(CC) $^ -o $@
 $(D_TARGET):				$(BUILDDIR)/$(MAINFILE).o $(D_OBJS)
 							$(CC) $^ -o $@
+$(A_TARGET):				$(BUILDDIR)/$(MAINFILE).o $(A_OBJS)
+							$(CC) $^ -o $@
 
-$(BUILDDIR)/$(MAINFILE).o:	$(MAINFILE).c
+$(BUILDDIR)/main.o:			main.c
 							$(COMPILE) -o $@ -c $<
-
 $(OBJS) $(B_OBJS):			$(BUILDDIR)/%.o: $(SEOUL42DIR)/%.c
 							$(COMPILE) -o $@ -c $<
 $(D_OBJS):					$(BUILDDIR)/%_debug.o: $(SEOUL42DIR)/%.c
 							$(COMPILE) -g -o $@ -c $<
+$(A_OBJS):					$(BUILDDIR)/%_asan.o: $(SEOUL42DIR)/%.c
+							$(COMPILE) -g3 -fsanitize=address -o $@ -c $<
 
 .PHONY:						clean
 clean:
@@ -71,7 +76,7 @@ clean:
 
 .PHONY:						fclean
 fclean:						clean
-							$(RM) $(TARGET) $(B_TARGET) $(D_TARGET)
+							$(RM) $(TARGET) $(B_TARGET) $(D_TARGET) $(A_TARGET)
 
 .PHONY:						re
 re:							fclean all

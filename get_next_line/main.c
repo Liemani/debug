@@ -21,5 +21,7 @@ int main()
 	PRINT(return_value1, d);
 	if (line1)
 		PRINT(line1, s);
+	while (1)
+		;
 	return (0);
 }
