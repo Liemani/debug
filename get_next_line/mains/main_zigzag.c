@@ -1,10 +1,8 @@
-// main_problem.c
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "../lmt.h"
+#include "../../lmt.h"
 #include "get_next_line.h"
 
 int main()
@@ -13,7 +11,6 @@ int main()
 	int 	fd2;
 	char	*line1;
 	char	*line2;
-	char	*line3;
 	int		return_value1;
 	int		return_value2;
 
@@ -30,7 +27,6 @@ int main()
 		free(line2);
 		line1 = NULL;
 		line2 = NULL;
-		get_next_line(-1, &line3);
 	}
 	PRINT(return_value1, d);
 	PRINT(return_value2, d);
@@ -40,7 +36,5 @@ int main()
 		PRINT(line2, s);
 	close(fd1);
 	close(fd2);
-	while(1)
-		;
 	return (0);
 }

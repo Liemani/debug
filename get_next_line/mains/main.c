@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "../lmt.h"
+#include "../../lmt.h"
 #include "get_next_line.h"
 
 int main()
@@ -21,7 +21,7 @@ int main()
 	PRINT(return_value1, d);
 	if (line1)
 		PRINT(line1, s);
-	while (1)
-		;
+//	while (1)
+//		;
 	return (0);
 }
