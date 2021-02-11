@@ -23,14 +23,15 @@ D_OUT = $(PROJNAME)$(D_SUFFIX).out
 A_OUT = $(PROJNAME)$(A_SUFFIX).out
 OUTS = $(M_OUT) $(B_OUT) $(D_OUT) $(A_OUT)
 
-MAIN_C = $(MAINDIR)/main.c
+MAINFILE = main_stdin
+MAIN_C = $(MAINDIR)/$(MAINFILE).c
 FILES = get_next_line get_next_line_utils
 M_SRCS = $(patsubst %,$(PROJNAME)/%.c,$(FILES))
 B_SRCS = $(patsubst %,$(PROJNAME)/%$(B_SUFFIX).c,$(FILES))
 
-MAIN_O = $(BUILDDIR)/$(MAINDIR)/main.o
-D_MAIN = $(BUILDDIR)/$(MAINDIR)/main$(D_SUFFIX).o
-A_MAIN = $(BUILDDIR)/$(MAINDIR)/main$(A_SUFFIX).o
+MAIN_O = $(BUILDDIR)/$(MAINDIR)/$(MAINFILE).o
+D_MAIN = $(BUILDDIR)/$(MAINDIR)/$(MAINFILE)$(D_SUFFIX).o
+A_MAIN = $(BUILDDIR)/$(MAINDIR)/$(MAINFILE)$(A_SUFFIX).o
 M_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%.o,$(FILES))
 B_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%$(B_SUFFIX).o,$(FILES))
 D_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%$(D_SUFFIX).o,$(FILES))
