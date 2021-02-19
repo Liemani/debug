@@ -23,7 +23,7 @@ D_OUT = $(PROJNAME)$(D_SUFFIX).out
 A_OUT = $(PROJNAME)$(A_SUFFIX).out
 OUTS = $(M_OUT) $(B_OUT) $(D_OUT) $(A_OUT)
 
-MAINFILE = main_stdin
+MAINFILE = main_zigzag
 MAIN_C = $(MAINDIR)/$(MAINFILE).c
 FILES = get_next_line get_next_line_utils
 M_SRCS = $(patsubst %,$(PROJNAME)/%.c,$(FILES))
