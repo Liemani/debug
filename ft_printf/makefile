@@ -26,6 +26,7 @@ A_OUT = $(PROJNAME)$(A_SUFFIX).out
 OUTS = $(M_OUT) $(D_OUT) $(A_OUT)
 
 MAIN_C = $(MAINDIR)/$(MAINFILE).c
+LIBFILE = $(PROJDIR)/lib$(LIBNAME).a
 
 MAIN_O = $(BUILDDIR)/$(MAINDIR)/$(MAINFILE).o
 D_MAIN = $(BUILDDIR)/$(MAINDIR)/$(MAINFILE)$(D_SUFFIX).o
@@ -58,11 +59,11 @@ asan:					$(BUILDDIRS) $(A_OUT)
 $(BUILDDIRS):
 						@$(MKDIR) $@
 
-$(M_OUT):				$(MAIN_O)
+$(M_OUT):				$(MAIN_O) $(LIBFILE)
 						$(LINK) -o $@ $^
-$(D_OUT):				$(D_MAIN)
+$(D_OUT):				$(D_MAIN) $(LIBFILE)
 						$(LINK) -o $@ $^
-$(A_OUT):				$(A_MAIN)
+$(A_OUT):				$(A_MAIN) $(LIBFILE)
 						$(LINK) -o $@ $^ $(ASAN_OPTION)
 
 $(MAIN_O):				$(MAIN_C)
