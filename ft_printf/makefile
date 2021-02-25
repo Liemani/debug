@@ -57,14 +57,17 @@ debug:					$(BUILDDIRS) $(D_OUT)
 asan:					$(BUILDDIRS) $(A_OUT)
 
 $(BUILDDIRS):
-						@$(MKDIR) $@
+						$(MKDIR) $@
 
-$(M_OUT):				$(MAIN_O) $(LIBFILE)
+$(M_OUT):				$(LIBFILE) $(MAIN_O)
 						$(LINK) -o $@ $^
-$(D_OUT):				$(D_MAIN) $(LIBFILE)
+$(D_OUT):				$(LIBFILE) $(D_MAIN)
 						$(LINK) -o $@ $^
-$(A_OUT):				$(A_MAIN) $(LIBFILE)
+$(A_OUT):				$(LIBFILE) $(A_MAIN)
 						$(LINK) -o $@ $^ $(ASAN_OPTION)
+
+$(LIBFILE):
+						make -C $(PROJDIR) debug
 
 $(MAIN_O):				$(MAIN_C)
 						$(COMPILE) -o $@ -c $<
@@ -75,6 +78,7 @@ $(A_MAIN):				$(MAIN_C)
 
 .PHONY:					clean fclean re
 clean:
+						make -C $(PROJDIR) fclean
 						$(RMDIR) $(BUILDDIR)
 fclean:					clean
 						$(RM) $(OUTS)
