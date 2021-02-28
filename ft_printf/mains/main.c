@@ -24,9 +24,9 @@ int main()
 	ft_printf("j [as %%.0x] -> [%.0x] \n", j);
 	ft_printf("j [as %%.0X] -> [%.0X] \n", j);
 	ft_printf("NULL [as %%-2s] -> [%-2s] \n", NULL);
-	ft_printf("NULL [as %%-2.s] -> [%-2s] \n", NULL);
-	ft_printf("NULL [as %%1.s] -> [%-2s] \n", NULL);
-	ft_printf("\"abcd\" [as %%1.s] -> [%-2s] \n", "abcd");
+	ft_printf("NULL [as %%-2.s] -> [%-2.s] \n", NULL);
+	ft_printf("NULL [as %%1.s] -> [%1.s] \n", NULL);
+	ft_printf("\"abcd\" [as %%1.s] -> [%1.s] \n", "abcd");
 	ft_printf("NULL [as %%.s] -> [%.s] \n", NULL);
 	ft_printf("NULL [as %%-4s] -> [%-4s] \n", NULL);
 	ft_printf("NULL [as %%-2.4s] -> [%-2.4s] \n", NULL);
@@ -40,12 +40,17 @@ int main()
 	ft_printf("NULL [as %%.2s] -> [%.2s] \n", NULL);
 	ft_printf("NULL [as %%.4s] -> [%.4s] \n", NULL);
 	ft_printf("NULL [as %%.8s] -> [%.8s] \n", NULL);
-	ft_printf("NULL [as %%4.2s] -> [%.8s] \n", NULL);
-	ft_printf("NULL [as %%8.4s] -> [%.8s] \n", NULL);
-	ft_printf("NULL [as %%12.8s] -> [%.8s] \n", NULL);
-	ft_printf("NULL [as %%12.s] -> [%.8s] \n", NULL);
+	ft_printf("NULL [as %%4.2s] -> [%4.2s] \n", NULL);
+	ft_printf("NULL [as %%8.4s] -> [%8.4s] \n", NULL);
+	ft_printf("NULL [as %%12.8s] -> [%12.8s] \n", NULL);
+	ft_printf("NULL [as %%12.s] -> [%12.s] \n", NULL);
 	ft_printf("-1, NULL [as %%12.*s] -> [%12.*s] \n", -1, NULL);
+	ft_printf("\"0\" [as %%.s] -> [%.s] \n", "0");
+	ft_printf("[as %%%%] -> [%%] \n");
+	ft_printf("[as %%05%%] -> [%05%] \n");
+	ft_printf("[as %%-05%%] -> [%-05%] \n");
 
+	putchar('\n');
 	printf("printf() \n");
 	printf("i [as %%d] -> [%d] \n", i);
 	printf("i [as %%.d] -> [%.d] \n", j);
@@ -59,9 +64,9 @@ int main()
 	printf("j [as %%.0x] -> [%.0x] \n", j);
 	printf("j [as %%.0X] -> [%.0X] \n", j);
 	printf("NULL [as %%-2s] -> [%-2s] \n", NULL);
-	printf("NULL [as %%-2.s] -> [%-2s] \n", NULL);
-	printf("NULL [as %%1.s] -> [%-2s] \n", NULL);
-	printf("\"abcd\" [as %%1.s] -> [%-2s] \n", "abcd");
+	printf("NULL [as %%-2.s] -> [%-2.s] \n", NULL);
+	printf("NULL [as %%1.s] -> [%1.s] \n", NULL);
+	printf("\"abcd\" [as %%1.s] -> [%1.s] \n", "abcd");
 	printf("NULL [as %%.s] -> [%.s] \n", NULL);
 	printf("NULL [as %%-4s] -> [%-4s] \n", NULL);
 	printf("NULL [as %%-2.4s] -> [%-2.4s] \n", NULL);
@@ -75,11 +80,15 @@ int main()
 	printf("NULL [as %%.2s] -> [%.2s] \n", NULL);
 	printf("NULL [as %%.4s] -> [%.4s] \n", NULL);
 	printf("NULL [as %%.8s] -> [%.8s] \n", NULL);
-	printf("NULL [as %%4.2s] -> [%.8s] \n", NULL);
-	printf("NULL [as %%8.4s] -> [%.8s] \n", NULL);
-	printf("NULL [as %%12.8s] -> [%.8s] \n", NULL);
-	printf("NULL [as %%12.s] -> [%.8s] \n", NULL);
+	printf("NULL [as %%4.2s] -> [%4.2s] \n", NULL);
+	printf("NULL [as %%8.4s] -> [%8.4s] \n", NULL);
+	printf("NULL [as %%12.8s] -> [%12.8s] \n", NULL);
+	printf("NULL [as %%12.s] -> [%12.s] \n", NULL);
 	printf("-1, NULL [as %%12.*s] -> [%12.*s] \n", -1, NULL);
+	printf("\"0\" [as %%.s] -> [%.s] \n", "0");
+	printf("[as %%%%] -> [%%] \n");
+	printf("[as %%05%%] -> [%05%] \n");
+	printf("[as %%-05%%] -> [%-05%] \n");
 
 	return (0);
 }
