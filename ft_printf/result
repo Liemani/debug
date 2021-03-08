@@ -1,0 +1,8 @@
+ft_printf: s [as %s] -> [ã„±] 
+ft_printf: ws [as %s] -> [11] 
+ft_printf: ws [as %ls] -> [±„ã] 
+before test 
+s [as %s] -> [ã„±] 
+(char *)ws [as %s] -> [11] 
+ws [as %ls] -> [ã„±] 
+start test 

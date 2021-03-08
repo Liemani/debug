@@ -1,7 +1,94 @@
 #include <stdio.h>
+#include <wchar.h>
+#include <locale.h>
 #include "ft_printf.h"
+#include "lmt.h"
 
-int main()
+#define FUNCTIONNAME a004
+
+void	a005()
+{
+	for (int i = -1; i < 2; ++i)
+		for (int k = 0; k < 11; k += 10)
+			for (int j = -1; j < 6; ++j)
+			{
+				printf("(k, j, i) == (%d, %d, %d) \n", k, j, i);
+				printf("k, j, i [as %% *.*d]   -> [% *.*d] \n", k, j, i);
+				printf("k, j, i [as %%+ *.*d]  -> [%+ *.*d] \n", k, j, i);
+				printf("k, j, i [as %% -*.*d]  -> [% *.*d] \n", k, j, i);
+				printf("k, j, i [as %%+ -*.*d] -> [%+ *.*d] \n", k, j, i);
+				putchar('\n');
+			}
+}
+
+void	a004()
+{
+	for (int i = -1; i < 2; ++i)
+		for (int k = 0; k < 11; k += 10)
+			for (int j = -1; j < 6; ++j)
+			{
+				printf("(k, j, i) == (%d, %d, %d) \n", k, j, i);
+				printf(   "printf   : k, j, i [as %%*.*o]   -> [%*.*o] \n", k, j, i);
+				ft_printf("ft_printf: k, j, i [as %%*.*o]   -> [%*.*o] \n", k, j, i);
+				printf(   "printf   : k, j, i [as %%0*.*o]  -> [%0*.*o] \n", k, j, i);
+				ft_printf("ft_printf: k, j, i [as %%0*.*o]  -> [%0*.*o] \n", k, j, i);
+				printf(   "printf   : k, j, i [as %%*.*x]   -> [%*.*x] \n", k, j, i);
+				ft_printf("ft_printf: k, j, i [as %%*.*x]   -> [%*.*x] \n", k, j, i);
+				printf(   "printf   : k, j, i [as %%0*.*x]  -> [%0*.*x] \n", k, j, i);
+				ft_printf("ft_printf: k, j, i [as %%0*.*x]  -> [%0*.*x] \n", k, j, i);
+				printf(   "printf   : k, j, i [as %%#*.*o]  -> [%#*.*o] \n", k, j, i);
+				ft_printf("ft_printf: k, j, i [as %%#*.*o]  -> [%#*.*o] \n", k, j, i);
+				printf(   "printf   : k, j, i [as %%#0*.*o] -> [%#0*.*o] \n", k, j, i);
+				ft_printf("ft_printf: k, j, i [as %%#0*.*o] -> [%#0*.*o] \n", k, j, i);
+				printf(   "printf   : k, j, i [as %%#*.*x]  -> [%#*.*x] \n", k, j, i);
+				ft_printf("ft_printf: k, j, i [as %%#*.*x]  -> [%#*.*x] \n", k, j, i);
+				printf(   "printf   : k, j, i [as %%#0*.*x] -> [%#0*.*x] \n", k, j, i);
+				ft_printf("ft_printf: k, j, i [as %%#0*.*x] -> [%#0*.*x] \n", k, j, i);
+				putchar('\n');
+			}
+}
+
+void	a003()
+{
+	for (int i = -10; i < 11; ++i)
+		for (int j = -10; j < 11; ++j)
+		{
+			printf("[i, j]: [%d, %d] \n", i, j);
+			printf(   "printf   : NULL [as %%*.*ls] -> [%*.*ls] \n", i, j, (wchar_t *)NULL);
+			ft_printf("ft_printf: NULL [as %%*.*ls] -> [%*.*ls] \n", i, j, (wchar_t *)NULL);
+			putchar('\n');
+		}
+}
+
+void	a002()
+{
+	for (int i = -10; i < 11; ++i)
+		for (int j = -10; j < 11; ++j)
+		{
+			printf("[i, j]: [%d, %d] \n", i, j);
+			printf("printf   : NULL [as %%*.*s]  -> [%*.*s] \n", i, j, (char *)NULL);
+			printf("printf   : NULL [as %%*.*ls] -> [%*.*ls] \n", i, j, (wchar_t *)NULL);
+			putchar('\n');
+		}
+}
+
+void	a001()
+{
+	wchar_t	*ws;
+
+	setlocale(LC_ALL, "");
+	ws = L"감자";
+	for (int i = -10; i < 11; ++i)
+		for (int j = -10; j < 11; ++j)
+		{
+			printf("[i, j]: [%d, %d] \n", i, j);
+			printf(   "printf    :  i, j, ws [as %%*.*ls] -> [%*.*ls] \n", i, j, ws);
+			ft_printf("ft_printf :  i, j, ws [as %%*.*ls] -> [%*.*ls] \n", i, j, ws);
+			putchar('\n');
+		}
+}
+
+void	a000()
 {
 	int	i;
 	int j;
@@ -90,5 +177,10 @@ int main()
 	printf("[as %%05%%] -> [%05%] \n");
 	printf("[as %%-05%%] -> [%-05%] \n");
 
+}
+
+int main()
+{
+	FUNCTIONNAME();
 	return (0);
 }
