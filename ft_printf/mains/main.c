@@ -4,7 +4,71 @@
 #include "ft_printf.h"
 #include "lmt.h"
 
-#define FUNCTIONNAME a004
+#define FUNCTIONNAME a007
+
+void	test()
+{
+	int	d;
+
+	d = -1;
+	ft_printf("%+-4.d \n", d);
+}
+
+void	a007()
+{
+	int	array[] = {0xffffff79, 0xc6};
+	int	x;
+
+	for (int i = 0; i < 3; ++i)
+	{
+		x = array[i];
+		printf(   "(x) == (%d) \n", x);
+		printf(   "-->|%4.3x|<--\n", x);
+		ft_printf("-->|%4.3x|<--\n", x);
+		printf(   "-->|%4.4x|<--\n", x);
+		ft_printf("-->|%4.4x|<--\n", x);
+		printf(   "-->|%4x|<--\n", x);
+		ft_printf("-->|%4x|<--\n", x);
+		printf(   "-->|%#-4.x|<--\n", x);
+		ft_printf("-->|%#-4.x|<--\n", x);
+		printf(   "-->|%#-4.*x|<--\n", -4, x);
+		ft_printf("-->|%#-4.*x|<--\n", -4, x);
+		printf(   "-->|%#-4.3x|<--\n", x);
+		ft_printf("-->|%#-4.3x|<--\n", x);
+		printf(   "-->|%#-4.4x|<--\n", x);
+		ft_printf("-->|%#-4.4x|<--\n", x);
+		printf(   "-->|%#-4.3x|<--\n", x);
+		ft_printf("-->|%#-4.3x|<--\n", x);
+		printf(   "-->|%#-4.4x|<--\n", x);
+		ft_printf("-->|%#-4.4x|<--\n", x);
+		printf(   "-->|%#-4x|<--\n", x);
+		ft_printf("-->|%#-4x|<--\n", x);
+		printf(   "-->|%#-4.x|<--\n", x);
+		ft_printf("-->|%#-4.x|<--\n", x);
+	}
+}
+
+void	a006()
+{
+	int	array[] = {0, -1, -135};
+	int	d;
+
+	for (int i = 0; i < 3; ++i)
+	{
+		d = array[i];
+		printf(   "(d) == (%d) \n", d);
+		printf(   "-->|%+-4.d|<--\n", d);
+		ft_printf("-->|%+-4.d|<--\n", d);
+		printf(   "-->|%+-4.*d|<--\n", -4, d);
+		ft_printf("-->|%+-4.*d|<--\n", -4, d);
+
+		printf(   "-->|% -4.4d|<--\n", d);
+		ft_printf("-->|% -4.4d|<--\n", d);
+
+		printf(   "-->|% -4d|<--\n", d);
+		ft_printf("-->|% -4d|<--\n", d);
+	}
+}
 
 void	a005()
 {
