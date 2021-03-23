@@ -66,7 +66,7 @@ $(BUILDDIRS):
 $(M_OUT):		$(LIBFILE) $(MAIN_O)
 				$(LINK) -o $@ $^
 $(D_OUT):		$(LIBFILE) $(D_MAIN_O)
-				$(LINK) -o $@ $^
+				$(LINK) -o $@ $^ $(DEBUG_OPTION)
 $(A_OUT):		$(LIBFILE) $(A_MAIN_O)
 				$(LINK) -o $@ $^ $(ASAN_OPTION)
 $(T_OUT):		$(T_MAIN_O)

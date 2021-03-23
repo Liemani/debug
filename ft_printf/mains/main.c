@@ -4,47 +4,194 @@
 #include "ft_printf.h"
 #include "lmt.h"
 
-#define FUNCTIONNAME a007
+#define FUNCTIONNAME a000
 
 void	test()
 {
-	int	d;
+	int	i;
 
-	d = -1;
-	ft_printf("%+-4.d \n", d);
+	printf(   "%--12.7dt%04i %04.2% et %c titi \n", 125, 124, 256);
+	ft_printf("%--12.7dt%04i %04.2% et %c titi \n", 125, 124, 256);
+	printf(   "%04.2c \n", 'a');
+	ft_printf("%04.2c \n", 'a');
+	printf(   "%04c \n", 'a');
+	ft_printf("%04c \n", 'a');
+	printf(   "%04.c \n", 'a');
+	ft_printf("%04.c \n", 'a');
+	printf(   "%04.p \n", &i);
+	ft_printf("%04.p \n", &i);
+	printf(   "[%030.2p] \n", &i);
+	ft_printf("[%030.2p] \n", &i);
+	printf(   "[%030.2s] \n", "abcd");
+	ft_printf("[%030.2s] \n", "abcd");
+}
+
+void	a010()
+{
+	short		hi;
+
+	hi = -135;
+	printf(   "hi [as %%hi] -> [%hi] \n", hi);
+	printf(   "hi [as %%-4.hi] -> [%-4.hi] \n", hi);
+	ft_printf("hi [as %%-4.hi] -> [%-4.hi] \n", hi);
+	for (int j = -1; j > -5; --j)
+	{
+		printf(   "j [as %%d] -> [%d] \n", j);
+		printf(   "j, hi [as %%-4.*hi] -> [%-4.*hi] \n", j, hi);
+		ft_printf("j, hi [as %%-4.*hi] -> [%-4.*hi] \n", j, hi);
+	}
+	hi = -58;
+	printf(   "hi [as %%hi] -> [%hi] \n", hi);
+	for (int j = 1; j < 5; ++j)
+	{
+		printf(   "j [as %%d] -> [%d] \n", j);
+		printf(   "j, hi [as %% -4.*hi] -> [% -4.*hi] \n", j, hi);
+		ft_printf("j, hi [as %% -4.*hi] -> [% -4.*hi] \n", j, hi);
+	}
+	printf(   "hi [as %% -4hi] -> [% -4hi] \n", hi);
+	ft_printf("hi [as %% -4hi] -> [% -4hi] \n", hi);
+}
+
+void	a008_2()
+{
+	const int	array[] = {0xffffff79, 0xc6};
+	int			X;
+
+	for (int i = 0; i < 2; ++i)
+	{
+		X = array[i];
+		printf(   "X [as %%d] -> [%d] \n", X);
+		printf(   "X [as %%4.3hhX] -> [%4.3hhX] \n", X);
+		ft_printf("X [as %%4.3hhX] -> [%4.3hhX] \n", X);
+		printf(   "X [as %%4.4hhX] -> [%4.4hhX] \n", X);
+		ft_printf("X [as %%4.4hhX] -> [%4.4hhX] \n", X);
+		printf(   "X [as %%4hhX] -> [%4hhX] \n", X);
+		ft_printf("X [as %%4hhX] -> [%4hhX] \n", X);
+		printf(   "X [as %%4.hhX] -> [%4.hhX] \n", X);
+		ft_printf("X [as %%4.hhX] -> [%4.hhX] \n", X);
+		printf(   "X [as %%-4hhX] -> [%-4hhX] \n", X);
+		ft_printf("X [as %%-4hhX] -> [%-4hhX] \n", X);
+		printf(   "X [as %%-4.hhX] -> [%-4.hhX] \n", X);
+		ft_printf("X [as %%-4.hhX] -> [%-4.hhX] \n", X);
+		printf(   "-4, X [as %%-4.*hhX] -> [%-4.*hhX] \n", -4, X);
+		ft_printf("-4, X [as %%-4.*hhX] -> [%-4.*hhX] \n", -4, X);
+
+		printf(   "-4, X [as %%#-4.*hhX] -> [%#-4.*hhX] \n", -4, X);
+		ft_printf("-4, X [as %%#-4.*hhX] -> [%#-4.*hhX] \n", -4, X);
+		printf(   "X [as %%#-4.3hhX] -> [%#-4.3hhX] \n", X);
+		ft_printf("X [as %%#-4.3hhX] -> [%#-4.3hhX] \n", X);
+		printf(   "X [as %%#-4.4hhX] -> [%#-4.4hhX] \n", X);
+		ft_printf("X [as %%#-4.4hhX] -> [%#-4.4hhX] \n", X);
+		printf(   "X [as %%#-4hhX] -> [%#-4hhX] \n", X);
+		ft_printf("X [as %%#-4hhX] -> [%#-4hhX] \n", X);
+		printf(   "X [as %%#-4.hhX] -> [%#-4.hhX] \n", X);
+		ft_printf("X [as %%#-4.hhX] -> [%#-4.hhX] \n", X);
+	}
+}
+
+void	a009()
+{
+	const int	array[] = {-135, -1, 0};
+	int			d;
+
+	for (int i = 0; i < 3; ++i)
+	{
+		d = array[i];
+		printf("d [as %%d] -> [%d] \n", d);
+		printf(   "d [as %%+4.3d] -> [%+4.3d] \n", d);
+		ft_printf("d [as %%+4.3d] -> [%+4.3d] \n", d);
+		printf(   "d [as %%+4.4d] -> [%+4.4d] \n", d);
+		ft_printf("d [as %%+4.4d] -> [%+4.4d] \n", d);
+		printf(   "d [as %%+4d] -> [%+4d] \n", d);
+		ft_printf("d [as %%+4d] -> [%+4d] \n", d);
+		printf(   "d [as %% -4.d] -> [% -4.d] \n", d);
+		ft_printf("d [as %% -4.d] -> [% -4.d] \n", d);
+		printf(   "-4, d [as %% -4.*d] -> [% -4.*d] \n", -4, d);
+		ft_printf("-4, d [as %% -4.*d] -> [% -4.*d] \n", -4, d);
+		printf(   "d [as %% -4.4d] -> [% -4.4d] \n", d);
+		ft_printf("d [as %% -4.4d] -> [% -4.4d] \n", d);
+		printf(   "d [as %% -4d] -> [% -4d] \n", d);
+		ft_printf("d [as %% -4d] -> [% -4d] \n", d);
+		printf(   "d [as %%-4.d] -> [%-4.d] \n", d);
+		ft_printf("d [as %%-4.d] -> [%-4.d] \n", d);
+		printf(   "-4, d [as %%-4.*d] -> [%-4.*d] \n", -4, d);
+		ft_printf("-4, d [as %%-4.*d] -> [%-4.*d] \n", -4, d);
+		printf(   "-3, d [as %%-4.*d] -> [%-4.*d] \n", -3, d);
+		ft_printf("-3, d [as %%-4.*d] -> [%-4.*d] \n", -3, d);
+	}
+}
+
+void	a008()
+{
+	const int	array[] = {0xffffff79, 0xc6};
+	int			x;
+
+	for (int i = 0; i < 2; ++i)
+	{
+		x = array[i];
+		printf(   "x [as %%d] -> [%d] \n", x);
+		printf(   "x [as %%4.3hhx] -> [%4.3hhx] \n", x);
+		ft_printf("x [as %%4.3hhx] -> [%4.3hhx] \n", x);
+		printf(   "x [as %%4.4hhx] -> [%4.4hhx] \n", x);
+		ft_printf("x [as %%4.4hhx] -> [%4.4hhx] \n", x);
+		printf(   "x [as %%4hhx] -> [%4hhx] \n", x);
+		ft_printf("x [as %%4hhx] -> [%4hhx] \n", x);
+		printf(   "x [as %%4.hhx] -> [%4.hhx] \n", x);
+		ft_printf("x [as %%4.hhx] -> [%4.hhx] \n", x);
+		printf(   "x [as %%-4hhx] -> [%-4hhx] \n", x);
+		ft_printf("x [as %%-4hhx] -> [%-4hhx] \n", x);
+		printf(   "x [as %%-4.hhx] -> [%-4.hhx] \n", x);
+		ft_printf("x [as %%-4.hhx] -> [%-4.hhx] \n", x);
+		printf(   "-4, x [as %%-4.*hhx] -> [%-4.*hhx] \n", -4, x);
+		ft_printf("-4, x [as %%-4.*hhx] -> [%-4.*hhx] \n", -4, x);
+
+		printf(   "-4, x [as %%#-4.*hhx] -> [%#-4.*hhx] \n", -4, x);
+		ft_printf("-4, x [as %%#-4.*hhx] -> [%#-4.*hhx] \n", -4, x);
+		printf(   "x [as %%#-4.3hhx] -> [%#-4.3hhx] \n", x);
+		ft_printf("x [as %%#-4.3hhx] -> [%#-4.3hhx] \n", x);
+		printf(   "x [as %%#-4.4hhx] -> [%#-4.4hhx] \n", x);
+		ft_printf("x [as %%#-4.4hhx] -> [%#-4.4hhx] \n", x);
+		printf(   "x [as %%#-4hhx] -> [%#-4hhx] \n", x);
+		ft_printf("x [as %%#-4hhx] -> [%#-4hhx] \n", x);
+		printf(   "x [as %%#-4.hhx] -> [%#-4.hhx] \n", x);
+		ft_printf("x [as %%#-4.hhx] -> [%#-4.hhx] \n", x);
+	}
 }
 
 void	a007()
 {
-	int	array[] = {0xffffff79, 0xc6};
-	int	x;
+	const int	array[] = {0xffffff79, 0xc6};
+	int			x;
 
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < 2; ++i)
 	{
 		x = array[i];
-		printf(   "(x) == (%d) \n", x);
-		printf(   "-->|%4.3x|<--\n", x);
-		ft_printf("-->|%4.3x|<--\n", x);
-		printf(   "-->|%4.4x|<--\n", x);
-		ft_printf("-->|%4.4x|<--\n", x);
-		printf(   "-->|%4x|<--\n", x);
-		ft_printf("-->|%4x|<--\n", x);
-		printf(   "-->|%#-4.x|<--\n", x);
-		ft_printf("-->|%#-4.x|<--\n", x);
-		printf(   "-->|%#-4.*x|<--\n", -4, x);
-		ft_printf("-->|%#-4.*x|<--\n", -4, x);
-		printf(   "-->|%#-4.3x|<--\n", x);
-		ft_printf("-->|%#-4.3x|<--\n", x);
-		printf(   "-->|%#-4.4x|<--\n", x);
-		ft_printf("-->|%#-4.4x|<--\n", x);
-		printf(   "-->|%#-4.3x|<--\n", x);
-		ft_printf("-->|%#-4.3x|<--\n", x);
-		printf(   "-->|%#-4.4x|<--\n", x);
-		ft_printf("-->|%#-4.4x|<--\n", x);
-		printf(   "-->|%#-4x|<--\n", x);
-		ft_printf("-->|%#-4x|<--\n", x);
-		printf(   "-->|%#-4.x|<--\n", x);
-		ft_printf("-->|%#-4.x|<--\n", x);
+		printf(   "x [as %%d] -> [%d] \n", x);
+		printf(   "x [as %%4.3x] -> [%4.3x] \n", x);
+		ft_printf("x [as %%4.3x] -> [%4.3x] \n", x);
+		printf(   "x [as %%4.4x] -> [%4.4x] \n", x);
+		ft_printf("x [as %%4.4x] -> [%4.4x] \n", x);
+		printf(   "x [as %%4x] -> [%4x] \n", x);
+		ft_printf("x [as %%4x] -> [%4x] \n", x);
+		printf(   "x [as %%4.x] -> [%4.x] \n", x);
+		ft_printf("x [as %%4.x] -> [%4.x] \n", x);
+		printf(   "x [as %%-4x] -> [%-4x] \n", x);
+		ft_printf("x [as %%-4x] -> [%-4x] \n", x);
+		printf(   "x [as %%-4.x] -> [%-4.x] \n", x);
+		ft_printf("x [as %%-4.x] -> [%-4.x] \n", x);
+		printf(   "-4, x [as %%-4.*x] -> [%-4.*x] \n", -4, x);
+		ft_printf("-4, x [as %%-4.*x] -> [%-4.*x] \n", -4, x);
+
+		printf(   "-4, x [as %%#-4.*x] -> [%#-4.*x] \n", -4, x);
+		ft_printf("-4, x [as %%#-4.*x] -> [%#-4.*x] \n", -4, x);
+		printf(   "x [as %%#-4.3x] -> [%#-4.3x] \n", x);
+		ft_printf("x [as %%#-4.3x] -> [%#-4.3x] \n", x);
+		printf(   "x [as %%#-4.4x] -> [%#-4.4x] \n", x);
+		ft_printf("x [as %%#-4.4x] -> [%#-4.4x] \n", x);
+		printf(   "x [as %%#-4x] -> [%#-4x] \n", x);
+		ft_printf("x [as %%#-4x] -> [%#-4x] \n", x);
+		printf(   "x [as %%#-4.x] -> [%#-4.x] \n", x);
+		ft_printf("x [as %%#-4.x] -> [%#-4.x] \n", x);
 	}
 }
 
