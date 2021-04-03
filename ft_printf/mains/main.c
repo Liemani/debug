@@ -4,9 +4,14 @@
 #include "ft_printf.h"
 #include "lmt.h"
 
-#define FUNCTIONNAME a000
+#define FUNCTIONNAME test
 
 void	test()
+{
+	ft_printf("%1234", 4321);
+}
+
+void	a011()
 {
 	int	i;
 
