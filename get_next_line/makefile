@@ -1,4 +1,3 @@
-
 GITDIR = $(realpath $(CURDIR)/../..)
 
 DEBUGDIR = ..
@@ -41,7 +40,7 @@ A_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%$(A_SUFFIX).o,$(FILES))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-DEFINE = -D BUFFER_SIZE=5
+DEFINE = -D BUFFER_SIZE=1024
 INCLUDE = -I $(PROJDIR) -I $(DEBUGDIR)
 DEBUG_OPTION = -g
 ASAN_OPTION = -g3 -fsanitize=address
