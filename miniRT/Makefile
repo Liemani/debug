@@ -34,7 +34,7 @@ CFLAGS = -w -Wall -Wextra -Werror
 INCLUDE = \
 		  -I $(PROJDIR)/value_type \
 		  -I $(PROJDIR)/util
-LIBRARY = -l m
+LIBRARY =
 DEBUG_OPTION = -g
 ASAN_OPTION = -g3 -fsanitize=address
 
