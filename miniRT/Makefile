@@ -9,32 +9,50 @@ DEBUGDIR		= $(GITDIR)/debug
 BUILDDIR				= $(CURDIR)/build
 BUILDDIRS				= $(BUILDDIR) \
 						  $(BUILDDIR)/value_type \
+						  $(BUILDDIR)/object \
+						  $(BUILDDIR)/core \
 						  $(BUILDDIR)/util
 
-
-
-M_OUT	= $(PROJNAME)_mandatory.out
-D_OUT	= $(PROJNAME)_debug.out
-A_OUT	= $(PROJNAME)_asan.out
-OUTS	= $(M_OUT) $(D_OUT) $(A_OUT)
-
-
-
 ABSTRACT_SRCS	= \
+				  util/lmt_alloc.c \
+				  core/t_mlx.c \
+				  core/t_window.c \
+				  core/t_image.c \
+				  core/t_scene.c \
+				  core/t_camera.c \
+				  value_type/t_vector2.c \
+				  value_type/t_vector2i.c \
 				  value_type/t_vector3.c \
 				  value_type/t_matrix3.c \
-				  util/lmt_alloc.c
+				  value_type/t_rgb192.c \
+				  value_type/t_rgb32.c \
+				  object/t_geometry.c \
+				  object/t_light.c \
+				  object/t_ray.c \
+				  object/t_sphere.c \
+				  object/t_plane.c \
+				  object/t_square.c \
+				  object/t_triangle.c \
+				  object/t_circle.c \
+				  object/t_cylinder_body.c \
+				  object/t_cylinder.c \
+				  hook.c
+
+
+
 SRCS			= $(patsubst %,$(BUILDDIR)/%,$(ABSTRACT_SRCS))
 OBJS			= $(SRCS:.c=.o)
 
-
+INCLUDE = \
+		  -I $(PROJDIR)/value_type \
+		  -I $(PROJDIR)/object \
+		  -I $(PROJDIR)/core \
+		  -I $(PROJDIR)/util
 
 CC = clang
 CFLAGS = -w -Wall -Wextra -Werror
-INCLUDE = \
-		  -I $(PROJDIR)/value_type \
-		  -I $(PROJDIR)/util
-LIBRARY =
+LIBRARY = -L $(PROJDIR)/libft -l ft \
+		  -l mlx -framework OpenGL -framework AppKit
 DEBUG_OPTION = -g
 ASAN_OPTION = -g3 -fsanitize=address
 
@@ -47,10 +65,17 @@ MKDIR = mkdir -p
 
 
 
+M_OUT	= $(PROJNAME)_mandatory.out
+D_OUT	= $(PROJNAME)_debug.out
+A_OUT	= $(PROJNAME)_asan.out
+OUTS	= $(M_OUT) $(D_OUT) $(A_OUT)
+
+
+
 .PHONY:			all debug setDebug asan setAsan clean fclean re
 all:			$(BUILDDIRS) $(M_OUT)
 
-debug:			$(BUILDDIRS) $(D_OUT)
+debug:			clean $(BUILDDIRS) $(D_OUT)
 setDebug:
 				$(eval OPTION = $(DEBUG_OPTION))
 				$(eval SUFFIX = $(D_SUFFIX))
@@ -62,9 +87,9 @@ setAsan:
 
 clean:
 				$(RMDIR) $(BUILDDIR)
-				$(RM) main.o
-fclean:			clean
+				$(RM) main.o describe.o
 				$(RM) $(OUTS)
+fclean:			clean
 re:				fclean all
 
 
@@ -72,10 +97,12 @@ re:				fclean all
 $(BUILDDIRS):
 				$(MKDIR) $@
 
-$(OUTS):		main.o $(OBJS)
+$(OUTS):		main.o describe.o $(OBJS)
 				$(LINK) -o $@ $^ $(OPTION)
 
 main.o:			main.c
+				$(COMPILE) -c $< -o $@ $(OPTION)
+describe.o:		describe.c
 				$(COMPILE) -c $< -o $@ $(OPTION)
 $(OBJS):		$(BUILDDIR)/%.o: $(PROJDIR)/%.c
 				$(COMPILE) -c $< -o $@ $(OPTION)
