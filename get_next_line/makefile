@@ -22,7 +22,7 @@ D_OUT = $(PROJNAME)$(D_SUFFIX).out
 A_OUT = $(PROJNAME)$(A_SUFFIX).out
 OUTS = $(M_OUT) $(B_OUT) $(D_OUT) $(A_OUT)
 
-MAINFILE = main_zigzag
+MAINFILE = main_stdin
 MAIN_C = $(MAINDIR)/$(MAINFILE).c
 FILES = get_next_line get_next_line_utils
 M_SRCS = $(patsubst %,$(PROJNAME)/%.c,$(FILES))
@@ -40,7 +40,7 @@ A_OBJS = $(patsubst %,$(BUILDDIR)/$(PROJNAME)/%$(A_SUFFIX).o,$(FILES))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-DEFINE = -D BUFFER_SIZE=1024
+DEFINE = -D BUFFER_SIZE=10
 INCLUDE = -I $(PROJDIR) -I $(DEBUGDIR)
 DEBUG_OPTION = -g
 ASAN_OPTION = -g3 -fsanitize=address
