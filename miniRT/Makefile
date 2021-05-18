@@ -11,10 +11,12 @@ BUILDDIRS				= $(BUILDDIR) \
 						  $(BUILDDIR)/value_type \
 						  $(BUILDDIR)/object \
 						  $(BUILDDIR)/core \
-						  $(BUILDDIR)/util
+						  $(BUILDDIR)/util \
+						  $(BUILDDIR)/t_bmp
 
 ABSTRACT_SRCS	= \
 				  util/lmt_alloc.c \
+				  util/endian.c \
 				  core/t_mlx.c \
 				  core/t_window.c \
 				  core/t_image.c \
@@ -36,6 +38,8 @@ ABSTRACT_SRCS	= \
 				  object/t_circle.c \
 				  object/t_cylinder_body.c \
 				  object/t_cylinder.c \
+				  t_bmp/t_bmp.c \
+				  t_application.c \
 				  hook.c
 
 
@@ -43,11 +47,16 @@ ABSTRACT_SRCS	= \
 SRCS			= $(patsubst %,$(BUILDDIR)/%,$(ABSTRACT_SRCS))
 OBJS			= $(SRCS:.c=.o)
 
+# DIR_TO_IINCLUDE = value_type \
+
 INCLUDE = \
 		  -I $(PROJDIR)/value_type \
 		  -I $(PROJDIR)/object \
 		  -I $(PROJDIR)/core \
-		  -I $(PROJDIR)/util
+		  -I $(PROJDIR)/libft \
+		  -I $(PROJDIR)/util \
+		  -I $(PROJDIR)/t_bmp \
+		  -I $(PROJDIR)
 
 CC = clang
 CFLAGS = -w -Wall -Wextra -Werror
