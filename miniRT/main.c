@@ -1,12 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <fcntl.h>
 #include "describe.h"
 #include "value_type.h"
 #include "object.h"
 #include "util.h"
+#include "get_line.h"
+#include "../lmt.h"
 
-#define EXECUTE test001
+#define EXECUTE test002
+
+void	test002()
+{
+	const int rt_file = open("minimalist.rt", O_RDONLY);
+
+	if (rt_file == -1)
+	{
+		printf("open error \n");
+		exit(READ_ERROR);
+	}
+
+	t_line_buffer line_buffer;
+
+	line_buffer_set(&line_buffer);
+	while (get_line(rt_file, &line_buffer) == LINE_EXIST)
+	{
+		PRINT(line_buffer.p_line, s);
+		free(line_buffer.p_line);
+	}
+
+	close(rt_file);
+}
 
 void	test001()
 {

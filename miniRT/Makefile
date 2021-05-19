@@ -7,12 +7,15 @@ SEOUL42DIR		= $(GITDIR)/seoul42_project
 PROJDIR				= $(SEOUL42DIR)/$(PROJNAME)
 DEBUGDIR		= $(GITDIR)/debug
 BUILDDIR				= $(CURDIR)/build
-BUILDDIRS				= $(BUILDDIR) \
-						  $(BUILDDIR)/value_type \
-						  $(BUILDDIR)/object \
-						  $(BUILDDIR)/core \
-						  $(BUILDDIR)/util \
-						  $(BUILDDIR)/t_bmp
+ABSTRACT_BUILDDIRS		= \
+						  . \
+						  value_type \
+						  object \
+						  core \
+						  util \
+						  t_bmp \
+						  set_model
+BUILDDIRS				= $(patsubst %,$(BUILDDIR)/%,$(ABSTRACT_BUILDDIRS))
 
 ABSTRACT_SRCS	= \
 				  util/lmt_alloc.c \
@@ -39,24 +42,24 @@ ABSTRACT_SRCS	= \
 				  object/t_cylinder_body.c \
 				  object/t_cylinder.c \
 				  t_bmp/t_bmp.c \
+				  set_model/get_line.c \
 				  t_application.c \
 				  hook.c
-
-
-
 SRCS			= $(patsubst %,$(BUILDDIR)/%,$(ABSTRACT_SRCS))
 OBJS			= $(SRCS:.c=.o)
 
 # DIR_TO_IINCLUDE = value_type \
 
-INCLUDE = \
-		  -I $(PROJDIR)/value_type \
-		  -I $(PROJDIR)/object \
-		  -I $(PROJDIR)/core \
-		  -I $(PROJDIR)/libft \
-		  -I $(PROJDIR)/util \
-		  -I $(PROJDIR)/t_bmp \
-		  -I $(PROJDIR)
+ABSTRACT_INCLUDE = \
+				   . \
+				   value_type \
+				   object \
+				   core \
+				   libft \
+				   util \
+				   t_bmp \
+				   set_model
+INCLUDE = $(patsubst %,-I $(PROJDIR)/%,$(ABSTRACT_INCLUDE))
 
 CC = clang
 CFLAGS = -w -Wall -Wextra -Werror
