@@ -87,15 +87,13 @@ OUTS	= $(M_OUT) $(D_OUT) $(A_OUT)
 .PHONY:			all debug setDebug asan setAsan clean fclean re
 all:			$(BUILDDIRS) $(M_OUT)
 
-debug:			clean $(BUILDDIRS) $(D_OUT)
+debug:			clean setDebug $(BUILDDIRS) $(D_OUT)
 setDebug:
 				$(eval OPTION = $(DEBUG_OPTION))
-				$(eval SUFFIX = $(D_SUFFIX))
 
-asan:			$(BUILDDIRS) $(A_OUT)
+asan:			setAsan $(BUILDDIRS) $(A_OUT)
 setAsan:
 				$(eval OPTION = $(ASAN_OPTION))
-				$(eval SUFFIX = $(A_SUFFIX))
 
 clean:
 				$(RMDIR) $(BUILDDIR)
@@ -117,4 +115,4 @@ main.o:			main.c
 describe.o:		describe.c
 				$(COMPILE) -c $< -o $@ $(OPTION)
 $(OBJS):		$(BUILDDIR)/%.o: $(PROJDIR)/%.c
-				$(COMPILE) -c $< -o $@ $(OPTION)
+				@$(COMPILE) -c $< -o $@ $(OPTION)

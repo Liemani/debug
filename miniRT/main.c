@@ -8,8 +8,21 @@
 #include "util.h"
 #include "get_line.h"
 #include "../lmt.h"
+#include "libft.h"
 
-#define EXECUTE test002
+#define EXECUTE test003
+
+void	test003()
+{
+	const char	*p_string = "-0000001234567891234567891234.56789";
+	const char	*p_result;
+	double		d;
+
+	p_result = ft_atod(p_string, &d);
+	PRINT(d, f);
+	PRINT(*p_result, c);
+	PRINT(*p_result, d);
+}
 
 void	test002()
 {
