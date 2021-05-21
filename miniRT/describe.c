@@ -21,10 +21,10 @@ void	circle_describe(t_geometry *p_geometry)
 
 	printf("circle: \n");
 	printf("center: ");
-	vector3_describe(p_circle->center);
+	vector3_describe(p_circle->p_center);
 	printf("normal: ");
-	vector3_describe(p_circle->normal);
+	vector3_describe(p_circle->p_normal);
 	printf("basis_vector: \n");
-	matrix3_describe(p_circle->basis_vector);
+	matrix3_describe(p_circle->p_basis_vector);
 	printf("radius: %f \n", p_circle->radius);
 }

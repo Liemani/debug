@@ -10,7 +10,18 @@
 #include "../lmt.h"
 #include "libft.h"
 
-#define EXECUTE test003
+#define EXECUTE test004
+
+void	test004()
+{
+	char		*string_data = "-50,0,20";
+	t_vector3	p_vector3;
+	int			return_value;
+
+	return_value = set_vector3(string_data, p_vector3);
+	PRINT(return_value, d);
+	vector3_describe(p_vector3);
+}
 
 void	test003()
 {
@@ -46,24 +57,24 @@ void	test002()
 	close(rt_file);
 }
 
-void	test001()
-{
-	t_geometry	*p_geometry = new_cylinder();
-	t_cylinder	*p_cylinder = p_geometry->p_derived_object;
-
-	cylinder_set_center(p_geometry, -2.0, 2.0, -3.0);
-	cylinder_set_orientation(p_geometry, 1.0, -1.0, 1.0);
-	cylinder_set_radius(p_geometry, 0.5);
-	cylinder_set_height(p_geometry, 1);
-	cylinder_set_circle_center(p_geometry);
-	p_geometry->color = new_rgb32(0xb0, 0xb0, 0x40);
-
-	printf("front ");
-	circle_describe(p_cylinder->p_front);
-	putchar('\n');
-	printf("rear ");
-	circle_describe(p_cylinder->p_rear);
-}
+//void	test001()
+//{
+//	t_geometry	*p_geometry = new_cylinder();
+//	t_cylinder	*p_cylinder = p_geometry->p_derived_object;
+//
+//	cylinder_set_center(p_geometry, -2.0, 2.0, -3.0);
+//	cylinder_set_orientation(p_geometry, 1.0, -1.0, 1.0);
+//	cylinder_set_radius(p_geometry, 0.5);
+//	cylinder_set_height(p_geometry, 1);
+//	cylinder_set_circle_center(p_geometry);
+//	p_geometry->color = new_rgb32(0xb0, 0xb0, 0x40);
+//
+//	printf("front ");
+//	circle_describe(p_cylinder->p_front);
+//	putchar('\n');
+//	printf("rear ");
+//	circle_describe(p_cylinder->p_rear);
+//}
 
 void	test000()
 {

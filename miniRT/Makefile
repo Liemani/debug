@@ -18,7 +18,7 @@ ABSTRACT_BUILDDIRS		= \
 BUILDDIRS				= $(patsubst %,$(BUILDDIR)/%,$(ABSTRACT_BUILDDIRS))
 
 ABSTRACT_SRCS	= \
-				  util/lmt_alloc.c \
+				  util/util.c \
 				  util/endian.c \
 				  core/t_mlx.c \
 				  core/t_window.c \
@@ -42,6 +42,7 @@ ABSTRACT_SRCS	= \
 				  object/t_cylinder_body.c \
 				  object/t_cylinder.c \
 				  t_bmp/t_bmp.c \
+				  set_model/set_model.c \
 				  set_model/get_line.c \
 				  t_application.c \
 				  hook.c
