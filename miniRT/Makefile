@@ -49,7 +49,7 @@ ABSTRACT_SRCS	= \
 SRCS			= $(patsubst %,$(BUILDDIR)/%,$(ABSTRACT_SRCS))
 OBJS			= $(SRCS:.c=.o)
 
-# DIR_TO_IINCLUDE = value_type \
+# DIR_TO_INCLUDE = value_type \
 
 ABSTRACT_INCLUDE = \
 				   . \
