@@ -68,6 +68,7 @@ setAsan:
 clean:
 				$(RM) main.o describe.o
 				$(RM) $(OUTS)
+				make -C $(PROJDIR) clean
 fclean:			clean
 				make -C $(PROJDIR) fclean
 re:				fclean all
