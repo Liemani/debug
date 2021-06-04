@@ -17,6 +17,7 @@ ABSTRACT_SRCS	= \
 				  bfs/t_queue.c \
 				  bfs/instruction_bfs.c \
 				  large_scale_search/t_lss.c \
+				  large_scale_search/t_buffer.c \
 				  large_scale_search/t_circular_list.c \
 				  large_scale_search/t_node_lss.c \
 				  large_scale_search/instruction_lss.c \

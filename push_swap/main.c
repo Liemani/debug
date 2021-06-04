@@ -7,5 +7,6 @@ int	main(int argc, char **argv)
 
 	p_lss = new_lss(argc, argv);
 	lss_run(p_lss);
+	while (1);
 	return (0);
 }
