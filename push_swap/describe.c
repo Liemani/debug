@@ -1,7 +1,14 @@
 #include <stdio.h>
 #include "describe.h"
+#include "t_lss.h"
 #include "t_circular_list.h"
 #include "t_node_lss.h"
+
+void	lss_describe(t_lss *p_lss)
+{
+	circular_list_describe(&p_lss->list_a);
+	circular_list_describe(&p_lss->list_b);
+}
 
 void	circular_list_describe(t_circular_list *p_list)
 {

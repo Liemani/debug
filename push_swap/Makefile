@@ -20,18 +20,22 @@ ABSTRACT_SRCS	= \
 				  large_scale_search/t_buffer.c \
 				  large_scale_search/t_circular_list.c \
 				  large_scale_search/t_node_lss.c \
-				  large_scale_search/t_sort_type.c \
 				  large_scale_search/instruction_lss.c \
 				  util.c
 SRCS			= $(patsubst %,$(PROJDIR)/%,$(ABSTRACT_SRCS))
 OBJS			= $(SRCS:.c=.o)
 
+PROJ_INCLUDE = \
+			   . \
+			   $(LIBFT) \
+			   bfs \
+			   large_scale_search
 ABSTRACT_INCLUDE = \
-				   . \
-				   $(LIBFT) \
-				   bfs \
-				   large_scale_search
-INCLUDE = $(patsubst %,-I $(PROJDIR)/%,$(ABSTRACT_INCLUDE))
+				   $(patsubst %,$(PROJDIR)/%,$(PROJ_INCLUDE)) \
+				   $(DEBUGDIR)
+
+INCLUDE = \
+		  $(patsubst %,-I %,$(ABSTRACT_INCLUDE)) \
 
 LIBRARY = -L $(PROJDIR)/libft -l $(patsubst lib%,%,$(LIBFT))
 
