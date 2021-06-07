@@ -21,14 +21,14 @@ while [[ count -gt 0 ]]; do
 	./push_swap_debug.out $ARG > .tmp
 	line=$(wc -l < .tmp)
 	echo $line
-	if [[ $line -gt $limit ]]; then
+	if [[ line -gt limit ]]; then
 		echo $ARG
 	fi
 	if [[ $(./checker_Mac $ARG < .tmp) == KO ]]; then
 		echo [KO]
 		echo input: $ARG
 	fi
-	if [[ $line -gt $biggest ]]; then
+	if [[ line -gt biggest ]]; then
 		biggest=$line
 		biggest_input=$ARG
 	fi
