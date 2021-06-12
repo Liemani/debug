@@ -60,27 +60,24 @@ OUTS	= $(M_OUT) $(D_OUT) $(A_OUT)
 
 
 
-.PHONY:			all debug setDebug asan setAsan clean fclean re
+.PHONY:			all debug pre_debug asan setAsan clean fclean re
 all:			$(BUILDDIRS) $(M_OUT)
 
-debug:			clean push_swap checker
+debug:			clean pre_debug push_swap checker
+pre_debug:
 				make -C $(PROJDIR) debug
-				cp $(PROJDIR)/push_swap .
-				cp $(PROJDIR)/checker .
-setDebug:
-				$(eval OPTION = $(DEBUG_OPTION))
 
 asan:			setAsan $(BUILDDIRS) $(A_OUT)
 setAsan:
 				$(eval OPTION = $(ASAN_OPTION))
 
 clean:
+				$(RM) push_swap checker
 				$(RM) main.o describe.o
 				$(RM) $(OUTS)
 				make -C $(PROJDIR) clean
 fclean:			clean
 				make -C $(PROJDIR) fclean
-				$(RM) push_swap checker
 re:				fclean all
 
 
@@ -94,3 +91,7 @@ describe.o:		describe.c
 				$(COMPILE) -c $< -o $@ $(OPTION)
 $(OBJS):
 				make -C $(PROJDIR) debug
+push_swap:
+				cp $(PROJDIR)/push_swap .
+checker:
+				cp $(PROJDIR)/checker .
