@@ -22,7 +22,7 @@ ABSTRACT_SRCS	= \
 				  large_scale_search/t_node_lss.c \
 				  large_scale_search/instruction_lss.c \
 				  util.c
-SRCS			= $(patsubst %,$(PROJDIR)/%,$(ABSTRACT_SRCS))
+SRCS			= $(addprefix  $(PROJDIR),$(ABSTRACT_SRCS))
 OBJS			= $(SRCS:.c=.o)
 
 PROJ_INCLUDE = \
@@ -63,7 +63,10 @@ OUTS	= $(M_OUT) $(D_OUT) $(A_OUT)
 .PHONY:			all debug setDebug asan setAsan clean fclean re
 all:			$(BUILDDIRS) $(M_OUT)
 
-debug:			clean setDebug $(BUILDDIRS) $(D_OUT)
+debug:			clean push_swap checker
+				make -C $(PROJDIR) debug
+				cp $(PROJDIR)/push_swap .
+				cp $(PROJDIR)/checker .
 setDebug:
 				$(eval OPTION = $(DEBUG_OPTION))
 
@@ -77,6 +80,7 @@ clean:
 				make -C $(PROJDIR) clean
 fclean:			clean
 				make -C $(PROJDIR) fclean
+				$(RM) push_swap checker
 re:				fclean all
 
 

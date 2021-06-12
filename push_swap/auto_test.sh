@@ -1,5 +1,8 @@
 #!/bin/bash
 
+push_swap=push_swap
+checker=checker_Mac
+
 if [[ $# -ne 2 ]]; then
 	echo "auto_test.sh <max> <time>"
 	exit 0
@@ -18,13 +21,13 @@ elif [[ $1 -le 500 ]]; then
 fi
 while [[ count -gt 0 ]]; do
 	ARG=$(ruby -e "puts (1..$1).to_a.shuffle.join(' ')")
-	./push_swap_debug.out $ARG > .tmp
+	./$push_swap $ARG > .tmp
 	line=$(wc -l < .tmp)
 	echo $line
 	if [[ line -gt limit ]]; then
 		echo $ARG
 	fi
-	if [[ $(./checker_Mac $ARG < .tmp) == KO ]]; then
+	if [[ $(./$checker $ARG < .tmp) == KO ]]; then
 		echo [KO]
 		echo input: $ARG
 	fi
