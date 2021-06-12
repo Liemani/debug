@@ -1,7 +1,7 @@
 #!/bin/bash
 
 push_swap=push_swap
-checker=checker_Mac
+checker=checker
 
 if [[ $# -ne 2 ]]; then
 	echo "auto_test.sh <max> <time>"
