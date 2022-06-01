@@ -4,12 +4,18 @@
 using std::cout;
 using std::endl;
 
-const int portNumber = 81;
+/*	template
+#ifdef GROUND139
+int main(void) {
 
-void FTServer_init(FTServer& ftServer);
-VirtualServer* VirtualServer_new(void);
-Location* Location_new(void);
+	return 0;
+}
+#endif
 
+*/
+
+#define GROUND000
+#ifdef GROUND000
 int main(int argc, char* argv[]) {
     FTServer ftServer;
 
@@ -17,40 +23,11 @@ int main(int argc, char* argv[]) {
         std::cerr << "usage: " << argv[0] << " <configuration file>" << endl;
         return 0;
     }
-    else
-        ftServer.initParseConfig(argv[1]);
 
-    FTServer_init(ftServer);
+    ftServer.initParseConfig(argv[1]);
+    ftServer.init();
     ftServer.run();
 
     return 0;
 }
-
-void FTServer_init(FTServer& ftServer) {
-    FTServer_init(ftServer);
-    ftServer._kqueue = kqueue();
-    std::set<port_t> portsOpen;
-    portsOpen.insert(portNumber);
-    ftServer.initializeConnection(portsOpen, portsOpen.size());
-}
-
-void FTServer_init(FTServer& ftServer) {
-    ftServer.appendVirtualServer(*VirtualServer_new());
-}
-
-VirtualServer* VirtualServer_new(void) {
-    VirtualServer* newVirtualServer = new VirtualServer(portNumber, "localhost");
-    newVirtualServer->appendLocation(Location_new());
-
-    return newVirtualServer;
-}
-
-Location* Location_new(void) {
-    Location* newLocation = new Location();
-
-    newLocation->setRoute("/");
-    newLocation->setRoot("/Users/bagjeonghun/git/debug/contents/webserv");
-    newLocation->setAutoIndex(true);
-
-    return newLocation;
-}
+#endif
