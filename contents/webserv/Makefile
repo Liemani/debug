@@ -10,15 +10,17 @@ DEBUGDIR                = $(GITDIR)/debug
 
 
 ABSTRACT_SRCS       = \
-                      Connection.cpp\
                       FTServer.cpp\
-                      Location.cpp\
-                      LocationConfig.cpp\
                       Log.cpp\
-                      Request.cpp\
-                      Response.cpp\
+					  EventHandler.cpp\
+					  EventContext.cpp\
+                      VirtualServerConfig.cpp\
+                      LocationConfig.cpp\
                       VirtualServer.cpp\
-                      VirtualServerConfig.cpp
+                      Location.cpp\
+                      Connection.cpp\
+                      Request.cpp\
+                      Response.cpp
 
 SRCS				:= $(addprefix $(PROJDIR)/,$(ABSTRACT_SRCS))
 OBJS				:= $(SRCS:.cpp=.o)
