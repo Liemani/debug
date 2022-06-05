@@ -22,7 +22,7 @@ ABSTRACT_SRCS       = \
                       Request.cpp\
                       Response.cpp
 
-SRCS				:= $(addprefix $(PROJDIR)/,$(ABSTRACT_SRCS))
+SRCS				:= $(addprefix $(CURDIR)/,$(ABSTRACT_SRCS))
 OBJS				:= $(SRCS:.cpp=.o)
 
 PROJ_INCLUDE        = \
@@ -70,5 +70,6 @@ $(NAME):			test.o $(OBJS)
 test.o:             %.o: %.cpp
 					$(COMPILE) -o $@ -c $<
 
-$(OBJS):            %.o: %.cpp
-					make -C $(PROJDIR)
+$(OBJS):            $(CURDIR)/%.o: $(PROJDIR)/%.cpp
+					$(COMPILE) -o $@ -c $<
+
