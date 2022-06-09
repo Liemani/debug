@@ -355,5 +355,8 @@ BODY IS HERE write something shorter or longer than body limit
 # curl POST
 curl -X POST -H "Content-Type: plain/text" --data "BODY IS HERE write something shorter or longer than body limit" localhost:81/.temp
 
+# curl POST large body
+curl -X POST -H "Content-Type: plain/text" --data "BODY IS HERE write something shorter or longer than body limitas jdlfkj lkj sldk fjas jdlfjklasjdlf jla sjlkdj flkjasldjflkjas djflkasjlkdf j" localhost:81/.temp
+
 # curl DELETE
 curl -X DELETE -H "Content-Type: plain/text" --data "BODY IS HERE write something shorter or longer than body limit" localhost:81/.temp
