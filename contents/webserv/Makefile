@@ -33,6 +33,8 @@ ABSTRACT_INCLUDE    = $(patsubst %,$(PROJDIR)/%,$(PROJ_INCLUDE))\
 
 INCLUDE				:= $(patsubst %,-I %,$(ABSTRACT_INCLUDE))
 
+DEBUG_OPTION		:= -D NDEBUG
+
 LIBRARY				:=
 
 CXX					:= c++
@@ -46,11 +48,11 @@ RM					:= rm -f
 
 
 .PHONY:				all debug setdebug clean fclean re
-all:				debug
+all:				$(NAME)
 
 debug:				clean setdebug $(NAME)
 setdebug:
-					$(eval DEBUG_OPTION = -g)
+					$(eval DEBUG_OPTION = -g -D LOG_LEVEL=0)
 
 clean:
 					$(RM) $(OBJS) test.o
