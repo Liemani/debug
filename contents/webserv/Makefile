@@ -52,7 +52,7 @@ all:				$(NAME)
 
 debug:				clean setdebug $(NAME)
 setdebug:
-					$(eval DEBUG_OPTION = -g -D LOG_LEVEL=0)
+					$(eval DEBUG_OPTION = -g)
 
 clean:
 					$(RM) $(OBJS) test.o

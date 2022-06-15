@@ -2,6 +2,13 @@
 GET / HTTP/1.1
 Host: localhost
 
+# GET with body
+GET / HTTP/1.1
+Host: localhost
+Content-Length: 3
+
+a
+
 # POST short
 POST /.temp HTTP/1.1
 Host: localhost
@@ -9,6 +16,10 @@ Content-Length: 20
 
 aaaaaaaa
 aaaaaaaa
+
+# POST cgi
+POST /.cgi HTTP/1.1
+Host: localhost
 
 # POST long 413
 POST /.temp HTTP/1.1
