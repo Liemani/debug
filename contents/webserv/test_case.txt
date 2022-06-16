@@ -2,6 +2,13 @@
 GET / HTTP/1.1
 Host: localhost
 
+# GET cgi
+GET /custom.cgi HTTP/1.1
+Host: localhost
+Content-Length: 3
+
+a
+
 # GET with body
 GET / HTTP/1.1
 Host: localhost

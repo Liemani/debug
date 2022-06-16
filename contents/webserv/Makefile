@@ -33,7 +33,7 @@ ABSTRACT_INCLUDE    = $(patsubst %,$(PROJDIR)/%,$(PROJ_INCLUDE))\
 
 INCLUDE				:= $(patsubst %,-I %,$(ABSTRACT_INCLUDE))
 
-DEBUG_OPTION		:= -D NDEBUG
+DEBUG_OPTION		= -D NDEBUG
 
 LIBRARY				:=
 

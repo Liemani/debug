@@ -14,9 +14,15 @@ int main(void) {
 
 */
 
+void lmi_exit(void) {
+    cout << "exiting" << endl;
+}
+
 #define GROUND000
 #ifdef GROUND000
 int main(int argc, char* argv[]) {
+    cout << "result: " << std::set_terminate(lmi_exit) << endl;
+
     FTServer ftServer;
 
     if (argc != 2) {
