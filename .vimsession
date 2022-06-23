@@ -89,7 +89,7 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/git/debug/contents/webserv
+cd ~/git/debug/webserv
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -267,10 +267,10 @@ exe s:l
 normal! zt
 6
 normal! 0
-lcd ~/git/debug/contents/webserv
+lcd ~/git/debug/webserv
 wincmd w
 argglobal
-if bufexists("~/git/debug/contents/webserv/index.html") | buffer ~/git/debug/contents/webserv/index.html | else | edit ~/git/debug/contents/webserv/index.html | endif
+if bufexists("~/git/debug/webserv/index.html") | buffer ~/git/debug/webserv/index.html | else | edit ~/git/debug/webserv/index.html | endif
 setlocal autoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -391,10 +391,10 @@ exe s:l
 normal! zt
 2
 normal! 0
-lcd ~/git/debug/contents/webserv
+lcd ~/git/debug/webserv
 wincmd w
 argglobal
-if bufexists("~/git/debug/contents/webserv/400error.html") | buffer ~/git/debug/contents/webserv/400error.html | else | edit ~/git/debug/contents/webserv/400error.html | endif
+if bufexists("~/git/debug/webserv/400error.html") | buffer ~/git/debug/webserv/400error.html | else | edit ~/git/debug/webserv/400error.html | endif
 setlocal autoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -515,10 +515,10 @@ exe s:l
 normal! zt
 1
 normal! 0
-lcd ~/git/debug/contents/webserv
+lcd ~/git/debug/webserv
 wincmd w
 argglobal
-if bufexists("~/git/debug/contents/webserv/404error.html") | buffer ~/git/debug/contents/webserv/404error.html | else | edit ~/git/debug/contents/webserv/404error.html | endif
+if bufexists("~/git/debug/webserv/404error.html") | buffer ~/git/debug/webserv/404error.html | else | edit ~/git/debug/webserv/404error.html | endif
 setlocal autoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -639,10 +639,10 @@ exe s:l
 normal! zt
 4
 normal! 022|
-lcd ~/git/debug/contents/webserv
+lcd ~/git/debug/webserv
 wincmd w
 argglobal
-if bufexists("~/git/debug/contents/webserv/Makefile") | buffer ~/git/debug/contents/webserv/Makefile | else | edit ~/git/debug/contents/webserv/Makefile | endif
+if bufexists("~/git/debug/webserv/Makefile") | buffer ~/git/debug/webserv/Makefile | else | edit ~/git/debug/webserv/Makefile | endif
 setlocal autoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -763,10 +763,10 @@ exe s:l
 normal! zt
 25
 normal! 043|
-lcd ~/git/debug/contents/webserv
+lcd ~/git/debug/webserv
 wincmd w
 argglobal
-if bufexists("~/git/debug/contents/webserv/test.cpp") | buffer ~/git/debug/contents/webserv/test.cpp | else | edit ~/git/debug/contents/webserv/test.cpp | endif
+if bufexists("~/git/debug/webserv/test.cpp") | buffer ~/git/debug/webserv/test.cpp | else | edit ~/git/debug/webserv/test.cpp | endif
 setlocal autoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -889,7 +889,7 @@ normal! zt
 normal! 0
 wincmd w
 argglobal
-if bufexists("~/git/debug/contents/webserv/test_case.txt") | buffer ~/git/debug/contents/webserv/test_case.txt | else | edit ~/git/debug/contents/webserv/test_case.txt | endif
+if bufexists("~/git/debug/webserv/test_case.txt") | buffer ~/git/debug/webserv/test_case.txt | else | edit ~/git/debug/webserv/test_case.txt | endif
 setlocal autoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -1010,7 +1010,7 @@ exe s:l
 normal! zt
 356
 normal! 06|
-lcd ~/git/debug/contents/webserv
+lcd ~/git/debug/webserv
 wincmd w
 argglobal
 terminal ++curwin ++cols=121 ++rows=96 
@@ -1273,13 +1273,13 @@ exe 'vert 7resize ' . ((&columns * 121 + 182) / 364)
 exe 'vert 8resize ' . ((&columns * 121 + 182) / 364)
 exe 'vert 9resize ' . ((&columns * 120 + 182) / 364)
 tabnext 1
-badd +1 ~/git/debug/contents/webserv/cluster.config
-badd +1 ~/git/debug/contents/webserv/test.cpp
-badd +3 ~/git/debug/contents/webserv/index.html
-badd +5 ~/git/debug/contents/webserv/400error.html
-badd +1 ~/git/debug/contents/webserv/404error.html
-badd +1 ~/git/debug/contents/webserv/Makefile
-badd +1 ~/git/debug/contents/webserv/test_case.txt
+badd +1 ~/git/debug/webserv/cluster.config
+badd +1 ~/git/debug/webserv/test.cpp
+badd +3 ~/git/debug/webserv/index.html
+badd +5 ~/git/debug/webserv/400error.html
+badd +1 ~/git/debug/webserv/404error.html
+badd +1 ~/git/debug/webserv/Makefile
+badd +1 ~/git/debug/webserv/test_case.txt
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
